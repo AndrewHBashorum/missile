@@ -1,10 +1,12 @@
-/// <summary>
-/// Empty Project for SFML[2.5.0]
-/// 
-/// 
-/// @author andrew fhfh
-/// @date May 2018
-/// </summary>
+// Name: Andrew Bashorum
+// Login: C00238900
+// Date: 29 November 2018
+// EST Time: 30 mins
+// Time Taken: 10 mins
+//---------------------------------------------------------------------------
+// Miisile command one. This is a game where an asteroid falls.
+// the player is tasked with destroying it before it reached earth 
+// Lab 9 prob 1
 
 #ifdef _DEBUG 
 #pragma comment(lib,"sfml-graphics-d.lib") 
