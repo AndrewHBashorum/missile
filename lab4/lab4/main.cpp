@@ -1,10 +1,4 @@
-/// <summary>
-/// Empty Project for SFML[2.5.0]
-/// 
-/// 
-/// @author andrew fhfh
-/// @date May 2018
-/// </summary>
+
 
 #ifdef _DEBUG 
 #pragma comment(lib,"sfml-graphics-d.lib") 

@@ -1,19 +1,21 @@
-// author Peter Lowe
+// author Andrew Bashorum
 
 #include "Game.h"
 #include <iostream>
-
+#include <SFML/Graphics.hpp>
 
 /// <summary>
 /// default construcor
 /// pass parameters fpr sfml window, setup m_exitGame
 /// </summary>
 Game::Game() :
-	m_window{ sf::VideoMode{ 800, 600, 32 }, "SFML Game" },
+	m_window{ sf::VideoMode{ 800, 600, 32 }, "Missile Command" },
 	m_exitGame{ false } //when true game will exit
 {
 	setupFontAndText(); // load font 
 	setupSprite(); // load texture
+	setup();
+	explosion();
 }
 
 /// <summary>
@@ -87,12 +89,47 @@ void Game::update(sf::Time t_deltaTime)
 /// </summary>
 void Game::render()
 {
-	m_window.clear(sf::Color::White);
-	m_window.draw(m_welcomeMessage);
-	m_window.draw(m_logoSprite);
+	m_window.clear(sf::Color::Black);
+
+	m_window.draw(floor);
+	m_window.draw(m_altitudeText);
+
+	m_window.draw(base);
+	m_window.draw(powerbar);
+
+
+	if (click = true)
+	{
+
+		m_window.draw(m_line);
+	}
+
 	m_window.display();
+
+	
+
 }
 
+void Game::processMouseEvents(sf::Event t_mouseEvent)
+{
+	sf::Vertex lineVertex{};
+	sf::Vector2i t_mouseClick{ 0,0 };
+	sf::Vector2i t_endpoint{ 100,50 };
+
+	if (sf::Mouse::Left == t_mouseEvent.mouseButton.button);
+	{
+		t_mouseClick = sf::Vector2i{ t_mouseEvent.mouseButton.x, t_mouseEvent.mouseButton.y };
+		lineVertex =  sf::Vertex{ sf::Vector2f{ t_mouseClick } , sf::Color::White };
+		 lineVertex = sf::Vertex{ sf::Vector2f{ t_endpoint } , sf::Color::Red };
+		 m_line.append(lineVertex);
+		 click = true;
+	}
+}
+
+void::Game::explosion()
+{
+
+}
 /// <summary>
 /// load the font and setup the text message for screen
 /// </summary>
@@ -102,14 +139,13 @@ void Game::setupFontAndText()
 	{
 		std::cout << "problem loading arial black font" << std::endl;
 	}
-	m_welcomeMessage.setFont(m_ArialBlackfont);
-	m_welcomeMessage.setString("SFML Game");
-	m_welcomeMessage.setStyle(sf::Text::Underlined | sf::Text::Italic | sf::Text::Bold);
-	m_welcomeMessage.setPosition(40.0f, 40.0f);
-	m_welcomeMessage.setCharacterSize(80);
-	m_welcomeMessage.setOutlineColor(sf::Color::Red);
-	m_welcomeMessage.setFillColor(sf::Color::Black);
-	m_welcomeMessage.setOutlineThickness(3.0f);
+	m_altitudeText.setFont(m_ArialBlackfont);
+	m_altitudeText.setString("Altitude");
+	m_altitudeText.setPosition(20.0f, 572.5f);
+	m_altitudeText.setCharacterSize(25);
+	m_altitudeText.setOutlineColor(sf::Color::Red);
+	m_altitudeText.setFillColor(sf::Color::White);
+
 
 }
 
@@ -118,11 +154,21 @@ void Game::setupFontAndText()
 /// </summary>
 void Game::setupSprite()
 {
-	if (!m_logoTexture.loadFromFile("ASSETS\\IMAGES\\SFML-LOGO.png"))
-	{
-		// simple error message if previous call fails
-		std::cout << "problem loading logo" << std::endl;
-	}
-	m_logoSprite.setTexture(m_logoTexture);
-	m_logoSprite.setPosition(300.0f, 180.0f);
+
+}
+
+
+void Game::setup()
+{
+	floor.setSize(sf::Vector2f{ 800, 30 });
+	floor.setPosition(sf::Vector2f{ 0, 570 });
+	floor.setFillColor(sf::Color::Green);
+
+	base.setSize(sf::Vector2f{ 50, 50 });
+	base.setPosition(sf::Vector2f{ 370, 520 });
+	base.setFillColor(sf::Color::Yellow);
+
+	powerbar.setSize(sf::Vector2f{ 400, 15 });
+	powerbar.setPosition(sf::Vector2f{ powerbarX, 580 });
+	powerbar.setFillColor(sf::Color::Red);
 }
