@@ -38,8 +38,13 @@ private:
 	bool click = false;
 
 	sf::VertexArray m_line{ sf::Lines };
-	sf::Vector2i t_mouseClick{ 0 , 0 };
-	sf::Vector2i t_endpoint{ 100,50 };
+	sf::Vector2f t_mouseClick{ 0 , 0 };
+	sf::Vector2f t_basePoint {400,300 };
+	sf::VertexArray t_whileMoving{ sf::Lines };
+	sf::VertexArray t_endPoint{ sf::Lines };
+	sf::VertexArray t_AbsoluteEndPoint{ sf::Lines };
+
+
 
 };
 

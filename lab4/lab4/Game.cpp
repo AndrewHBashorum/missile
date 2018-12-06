@@ -1,4 +1,5 @@
 // author Andrew Bashorum
+// est time 3 hours
 
 #include "Game.h"
 #include <iostream>
@@ -113,14 +114,15 @@ void Game::render()
 void Game::processMouseEvents(sf::Event t_mouseEvent)
 {
 	sf::Vertex lineVertex{};
-	sf::Vector2i t_mouseClick{ 0,0 };
-	sf::Vector2i t_endpoint{ 100,50 };
+	sf::Vector2f t_mouseClick{ 0,0 };
+	
 
 	if (sf::Mouse::Left == t_mouseEvent.mouseButton.button);
 	{
-		t_mouseClick = sf::Vector2i{ t_mouseEvent.mouseButton.x, t_mouseEvent.mouseButton.y };
-		lineVertex =  sf::Vertex{ sf::Vector2f{ t_mouseClick } , sf::Color::White };
-		 lineVertex = sf::Vertex{ sf::Vector2f{ t_endpoint } , sf::Color::Red };
+		t_mouseClick = sf::Vector2f{(float) t_mouseEvent.mouseButton.x,(float) t_mouseEvent.mouseButton.y };
+
+		 lineVertex = sf::Vertex{ sf::Vector2f{ t_basePoint } , sf::Color::Red };
+		 lineVertex = sf::Vertex{ sf::Vector2f{t_mouseClick} , sf::Color::Black };
 		 m_line.append(lineVertex);
 		 click = true;
 	}
@@ -143,9 +145,19 @@ void Game::setupFontAndText()
 	m_altitudeText.setString("Altitude");
 	m_altitudeText.setPosition(20.0f, 572.5f);
 	m_altitudeText.setCharacterSize(25);
-	m_altitudeText.setOutlineColor(sf::Color::Red);
+	m_altitudeText.setOutlineColor(sf::Color::White);
 	m_altitudeText.setFillColor(sf::Color::White);
 
+//	if (!m_ArialBlackfont.loadFromFile("ASSETS\\FONTS\\ariblk.ttf"))
+	{
+		// error...
+
+	}
+//	sf::Text text;
+//	text.setFont(m_ArialBlackfont);
+//	text.setCharacterSize(10);
+//	text.setFillColor(sf::Color::White);
+//	text.setPosition()
 
 }
 
